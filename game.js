@@ -142,7 +142,7 @@ this.time.addEvent({
     }
 });
 
-const copyImage = this.add.image(config.width -180, config.height - 25, 'copy')
+const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
 .setOrigin(0.5)
 .setScale(0.35); // Adjust scale as needed for your image
 
