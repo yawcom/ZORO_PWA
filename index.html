@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zoro Sequence</title>
+    <meta name="description" content="Memorizza la sequenza di carte raffiguranti Zoro">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1f84e5">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <!-- Add these meta tags for iOS full-screen mode -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1f84e5;
+        }
+        #game-container {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script src="game.js"></script>
+    <script>
+        // Function to hide the address bar and go fullscreen
+        function goFullScreen() {
+            // Scroll to hide address bar
+            window.scrollTo(0, 1);
+            
+            // Try to enter fullscreen mode
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+        
+        // Hide address bar on page load
+        window.addEventListener('load', function() {
+            // Short delay to ensure page is fully loaded
+            setTimeout(goFullScreen, 100);
+        });
+        
+        // Try again on orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(goFullScreen, 100);
+        });
+        
+        // Try again on resize
+        window.addEventListener('resize', goFullScreen);
+        
+        // Try again on first user interaction
+        document.addEventListener('click', goFullScreen, {once: true});
+        document.addEventListener('touchstart', goFullScreen, {once: true});
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+        
+        // Add install prompt
+        let deferredPrompt;
+        const installButton = document.createElement('button');
+        installButton.style.display = 'none';
+        installButton.textContent = 'Installa il gioco';
+        installButton.style.position = 'absolute';
+        installButton.style.bottom = '10px';
+        installButton.style.left = '50%';
+        installButton.style.transform = 'translateX(-50%)';
+        installButton.style.padding = '10px 20px';
+        installButton.style.backgroundColor = '#90EE90';
+        installButton.style.border = '2px solid #006600';
+        installButton.style.borderRadius = '8px';
+        installButton.style.fontWeight = 'bold';
+        installButton.style.zIndex = '1000';
+        document.body.appendChild(installButton);
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Update UI to notify the user they can add to home screen
+            installButton.style.display = 'block';
+        });
+        
+        installButton.addEventListener('click', (e) => {
+            // Hide our user interface that shows our A2HS button
+            installButton.style.display = 'none';
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+    </script>
+</body>
+</html>
