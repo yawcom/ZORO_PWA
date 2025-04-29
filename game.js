@@ -80,7 +80,7 @@ function createStartScreen() {
     const centerY = this.cameras.main.height / 2+25;
     
     // Title - increased size and added shadow
-    const title = this.add.text(config.width / 2, config.height / 4, 'Benvenuto in Zoro Sequence', {
+    const title = this.add.text(config.width / 2, config.height / 5, 'Benvenuto in Zoro Sequence', {
         fontFamily: 'Arial',
         fontSize: '35px', // Increased from 80px to 120px
         fontStyle: 'bold',
@@ -116,13 +116,14 @@ function createStartScreen() {
     // Store reference to the start button globally so we can disable it later
     //window.startButton = startButton;
 
+this.add.rectangle( width/2, config.height /3, width, 100, 0x16213e).setOrigin(0.5, 0.5).setAlpha(0.5);
 // Game instructions text
-const instructionsText = this.add.text(config.width / 2, config.height /9.5, 
+const instructionsText = this.add.text(config.width / 2, config.height /3, 
     'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte! Buona fortuna!', {
     fontFamily: 'Arial',
     fontSize: '14px',
     fontStyle: 'bold',
-    color: '#000',
+    color: '#fff',
     //stroke: '#fff',
     //strokeThickness: 1,
     align: 'center',
