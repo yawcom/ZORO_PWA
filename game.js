@@ -167,6 +167,7 @@ const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
     startButton.on('pointerdown', () => {
         // Disable the button immediately to prevent multiple clicks
         startButton.disableInteractive();
+        startButton.destroy();
         startButton.visible = false;
         
         gameState = 'memorize';
