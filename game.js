@@ -80,7 +80,7 @@ function createStartScreen() {
     const centerY = this.cameras.main.height / 2+25;
     
     // Title - increased size and added shadow
-    const title = this.add.text(config.width / 2, config.height / 5, 'Benvenuto in Zoro Sequence', {
+    const title = this.add.text(config.width / 2, config.height / 4, 'Benvenuto in Zoro Sequence', {
         fontFamily: 'Arial',
         fontSize: '35px', // Increased from 80px to 120px
         fontStyle: 'bold',
@@ -117,7 +117,7 @@ function createStartScreen() {
     //window.startButton = startButton;
 
 // Game instructions text
-const instructionsText = this.add.text(config.width / 2, config.height /10, 
+const instructionsText = this.add.text(config.width / 2, config.height /9.5, 
     'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte! Buona fortuna!', {
     fontFamily: 'Arial',
     fontSize: '14px',
@@ -166,9 +166,9 @@ const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
     // Start game on click
     startButton.on('pointerdown', () => {
         // Disable the button immediately to prevent multiple clicks
-        startButton.disableInteractive();
+        //startButton.disableInteractive();
         startButton.destroy();
-        //startButton.visible = false;
+        startButton.visible = false;
         
         gameState = 'memorize';
         startLevel.call(this);
@@ -180,22 +180,28 @@ function startLevel() {
     this.children.removeAll(true);
     
     // Make sure the start button is completely disabled if it exists
-    if (window.startButton) {
-        window.startButton.disableInteractive();
-        window.startButton.visible = false;
-        window.startButton = null;
-    }
-
+    // if (window.startButton) {
+    //     window.startButton.disableInteractive();
+    //     window.startButton.visible = false;
+    //     window.startButton = null;
+    // }
    
     // Remove all input listeners
     this.input.removeAllListeners();
+
+    allCards.forEach(card => {
+        if (card && card.input) {
+            card.disableInteractive();
+        }
+    });
+    
+    // Clear the cards array
+    allCards = [];
     
     background = this.add.image(this.scale.width/2, this.scale.height/2, 'background');
     
-
-            // Make sure to remove all input listeners
-            this.input.removeAllListeners();
-
+    // Make sure to remove all input listeners
+    this.input.removeAllListeners();
             
     // Reset for new level
     foundCards = 0;
@@ -217,6 +223,15 @@ function startLevel() {
 function createUI() {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
+
+        // Remove all input listeners
+        this.input.removeAllListeners();
+
+        allCards.forEach(card => {
+            if (card && card.input) {
+                card.disableInteractive();
+            }
+        });
     
     // Top bar background
     this.add.rectangle(width/2, 40, width, 100, 0x16213e).setOrigin(0.5, 0.5).setAlpha(0.5);
@@ -266,6 +281,15 @@ function createUI() {
 function createMemorizePhase() {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
+
+        // Remove all input listeners
+        this.input.removeAllListeners();
+
+        allCards.forEach(card => {
+            if (card && card.input) {
+                card.disableInteractive();
+            }
+        });
     
     // Instructions text
     const instructionsText = this.add.text(width/2, 120, 'Memorizza la seguente sequenza di carte!', {
@@ -366,6 +390,15 @@ let fixedCardIndices = [];
 function createFindingPhase() {
     // Clear previous elements
     this.children.removeAll(true);
+
+    allCards.forEach(card => {
+        if (card && card.input) {
+            card.disableInteractive();
+        }
+    });
+    
+    // Clear the cards array
+    allCards = [];
     
     //background = this.add.image(425, 425, 'background');
     //background.setDisplaySize(850, 850);
