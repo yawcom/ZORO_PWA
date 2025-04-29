@@ -51,18 +51,18 @@ function preload() {
 }
 
 function create() {
-    this.scale.resize(window.innerWidth, window.innerHeight);
+    //this.scale.resize(window.innerWidth, window.innerHeight);
     
     // Create start screen
     createStartScreen.call(this);
     
     // Handle window resize
-    window.addEventListener('resize', () => {
-        this.scale.resize(window.innerWidth, window.innerHeight);
-        if (gameState === 'start') {
-            createStartScreen.call(this);
-        }
-    });
+    //window.addEventListener('resize', () => {
+    //    this.scale.resize(window.innerWidth, window.innerHeight);
+    //    if (gameState === 'start') {
+   //         createStartScreen.call(this);
+    //    }
+    //});
 }
 
 function createStartScreen() {
@@ -168,8 +168,9 @@ const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
         // Disable the button immediately to prevent multiple clicks
         //startButton.disableInteractive();
         startButton.destroy();
-        startButton.visible = false;
-        
+        //startButton.visible = false;
+        startButton.destroy();
+
         gameState = 'memorize';
         startLevel.call(this);
     });
