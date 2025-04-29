@@ -11,6 +11,10 @@
     <!-- Add these meta tags for iOS full-screen mode -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Force portrait orientation -->
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="msapplication-orientation" content="portrait">
     <style>
         body {
             margin: 0;
@@ -22,13 +26,60 @@
             width: 100%;
             height: 100vh;
         }
+        /* Add portrait mode message */
+        #orientation-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1f84e5;
+            color: white;
+            text-align: center;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+            padding-top: 40vh;
+        }
+        @media screen and (orientation: landscape) {
+            #orientation-message {
+                display: block;
+            }
+            #game-container {
+                display: none;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
 </head>
 <body>
+    <!-- Portrait mode message -->
+    <div id="orientation-message">
+        <h2>Per favore ruota il dispositivo</h2>
+        <p>Questo gioco funziona solo in modalità verticale</p>
+        <div style="font-size: 50px; margin-top: 20px;">📱↻</div>
+    </div>
+    
     <div id="game-container"></div>
     <script src="game.js"></script>
     <script>
+        // Function to handle orientation changes
+        function handleOrientation() {
+            if (window.orientation === 90 || window.orientation === -90) {
+                // Landscape mode
+                document.getElementById('orientation-message').style.display = 'block';
+                document.getElementById('game-container').style.display = 'none';
+            } else {
+                // Portrait mode
+                document.getElementById('orientation-message').style.display = 'none';
+                document.getElementById('game-container').style.display = 'block';
+            }
+        }
+        
+        // Check orientation on page load and orientation change
+        window.addEventListener('load', handleOrientation);
+        window.addEventListener('orientationchange', handleOrientation);
+        
         // Function to hide the address bar and go fullscreen
         function goFullScreen() {
             // Scroll to hide address bar

@@ -117,20 +117,20 @@ function createStartScreen() {
     //window.startButton = startButton;
 
 // Game instructions text
-const instructionsText = this.add.text(config.width -150, config.height / 3, 
-    'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte!\n Buona fortuna!', {
-        fontFamily: 'Arial',
+const instructionsText = this.add.text(config.width / 2, config.height /10, 
+    'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte! Buona fortuna!', {
+    fontFamily: 'Arial',
     fontSize: '14px',
     fontStyle: 'bold',
     color: '#000',
     //stroke: '#fff',
     //strokeThickness: 1,
-    align: 'right',
+    align: 'center',
     wordWrap: { width: config.width * 0.8 }
 }).setOrigin(0.5);//.setShadow(2, 2, '#000000', 2, false, true);
 
 instructionsText.setText('');
-const fullText = 'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte!\n Buona fortuna!';
+const fullText = 'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte! Buona fortuna!';
 let i = 0;
 
 this.time.addEvent({
@@ -168,7 +168,7 @@ const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
         // Disable the button immediately to prevent multiple clicks
         startButton.disableInteractive();
         startButton.destroy();
-        startButton.visible = false;
+        //startButton.visible = false;
         
         gameState = 'memorize';
         startLevel.call(this);
