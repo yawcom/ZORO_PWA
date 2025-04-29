@@ -73,7 +73,7 @@ function createStartScreen() {
     const height = this.scale.height;
 
     // Add background image with fixed size instead of scaling to screen
-    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2420)/1729, config.height);
+    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2688)/1920, config.height);
     // Keep original size instead of scaling
     
     const centerX = this.cameras.main.width / 2;
@@ -114,7 +114,7 @@ function createStartScreen() {
     }).setOrigin(0.5).setInteractive();
     
     // Store reference to the start button globally so we can disable it later
-    window.startButton = startButton;
+    //window.startButton = startButton;
 
 // Game instructions text
 const instructionsText = this.add.text(config.width -150, config.height / 3, 
@@ -184,12 +184,18 @@ function startLevel() {
         window.startButton.visible = false;
         window.startButton = null;
     }
-    
+
+   
     // Remove all input listeners
     this.input.removeAllListeners();
     
     background = this.add.image(this.scale.width/2, this.scale.height/2, 'background');
     
+
+            // Make sure to remove all input listeners
+            this.input.removeAllListeners();
+
+            
     // Reset for new level
     foundCards = 0;
     selectedCards = [];
@@ -561,7 +567,7 @@ function gameOver(success) {
     // Ridimensiona l'immagine per occupare tutto lo schermo
     //background.setDisplaySize(width, height);   
 
-    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2420)/1729, config.height);
+    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2688)/1920, config.height);
 
     //background = this.add.image(425, 425, bgKey);
     //background.setDisplaySize(850, 850);
