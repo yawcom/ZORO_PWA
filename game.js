@@ -73,7 +73,7 @@ function createStartScreen() {
     const height = this.scale.height;
 
     // Add background image with fixed size instead of scaling to screen
-    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2828)/2020, config.height);
+    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2752)/2100, config.height);
     // Keep original size instead of scaling
     
     const centerX = this.cameras.main.width / 2;
@@ -603,7 +603,7 @@ function gameOver(success) {
     // Ridimensiona l'immagine per occupare tutto lo schermo
     //background.setDisplaySize(width, height);   
 
-    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2828)/2020, config.height);
+    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2752)/2100, config.height);
 
     //background = this.add.image(425, 425, bgKey);
     //background.setDisplaySize(850, 850);
