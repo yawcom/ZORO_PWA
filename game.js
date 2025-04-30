@@ -332,8 +332,8 @@ function createMemorizePhase() {
             gridSize = 4; // fallback
     }
 
-    const cardWidth =142// Math.min(width * 0.8 / gridSize, 150);
-    const cardHeight =250// cardWidth * 1.4;
+    const cardWidth =141// Math.min(width * 0.8 / gridSize, 150);
+    const cardHeight =236// cardWidth * 1.4;
     const spacing = 15; // Add 15px spacing between cards
     
     // Adjust startX and startY to account for spacing
