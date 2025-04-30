@@ -445,8 +445,8 @@ function createFindingPhase() {
     //const cardHeight = cardWidth * 1.4;
     //const spacing = 5; // Add 15px spacing between cards
 
-    const cardWidth =142/2// Math.min(width * 0.8 / gridSize, 150);
-    const cardHeight =250/2// cardWidth * 1.4;
+    const cardWidth =141/2// Math.min(width * 0.8 / gridSize, 150);
+    const cardHeight =236/2// cardWidth * 1.4;
     const spacing = 5; // Add 15px spacing between cards
     
     // Adjust startX and startY to account for spacing
