@@ -73,7 +73,7 @@ function createStartScreen() {
     const height = this.scale.height;
 
     // Add background image with fixed size instead of scaling to screen
-    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2752)/2100, config.height);
+    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((1200*2752)/2100, 1920);
     // Keep original size instead of scaling
     
     const centerX = this.cameras.main.width / 2;
@@ -200,8 +200,9 @@ function startLevel() {
     // Clear the cards array
     allCards = [];
     
-    background = this.add.image(this.scale.width/2, this.scale.height/2, 'background');
-    
+    //background = this.add.image(this.scale.width/2, this.scale.height/2, 'background');
+    background = this.add.image(0, 0, 'background').setDisplaySize((1200*2752)/2100, 1920);
+
     // Make sure to remove all input listeners
     this.input.removeAllListeners();
             
@@ -404,7 +405,7 @@ function createFindingPhase() {
     
     //background = this.add.image(425, 425, 'background');
     //background.setDisplaySize(850, 850);
-	background = this.add.image(this.scale.width/2, this.scale.height/2, 'background');
+	background = this.add.image(0, 0, 'background').setDisplaySize((1200*2752)/2100, 1920);
     // Recreate UI
     createUI.call(this);
     
@@ -603,8 +604,9 @@ function gameOver(success) {
     // Ridimensiona l'immagine per occupare tutto lo schermo
     //background.setDisplaySize(width, height);   
 
-    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2752)/2100, config.height);
-
+    //const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2752)/2100, config.height);
+    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((1200*2752)/2100, 1920);
+    
     //background = this.add.image(425, 425, bgKey);
     //background.setDisplaySize(850, 850);
     
