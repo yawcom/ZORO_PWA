@@ -73,7 +73,7 @@ function createStartScreen() {
     const height = this.scale.height;
 
     // Add background image with fixed size instead of scaling to screen
-    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2688)/1920, config.height);
+    const background = this.add.image(width/2, height/2, 'background_Start').setDisplaySize((config.height*2828)/2020, config.height);
     // Keep original size instead of scaling
     
     const centerX = this.cameras.main.width / 2;
@@ -121,13 +121,13 @@ this.add.rectangle( width/2, config.height /3, width, 100, 0x16213e).setOrigin(0
 const instructionsText = this.add.text(config.width / 2, config.height /3, 
     'Memorizza le carte raffiguranti Zoro.\n Avrai 10 secondi per memorizzarle.\n Il tuo obiettivo?\n Ricordarle tutte! Buona fortuna!', {
     fontFamily: 'Arial',
-    fontSize: '14px',
+    fontSize: '15px',
     fontStyle: 'bold',
     color: '#fff',
     //stroke: '#fff',
     //strokeThickness: 1,
-    align: 'center',
-    wordWrap: { width: config.width * 0.8 }
+    align: 'center'
+    //wordWrap: { width: config.width * 0.8 }
 }).setOrigin(0.5);//.setShadow(2, 2, '#000000', 2, false, true);
 
 instructionsText.setText('');
@@ -603,7 +603,7 @@ function gameOver(success) {
     // Ridimensiona l'immagine per occupare tutto lo schermo
     //background.setDisplaySize(width, height);   
 
-    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2688)/1920, config.height);
+    const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2828)/2020, config.height);
 
     //background = this.add.image(425, 425, bgKey);
     //background.setDisplaySize(850, 850);
