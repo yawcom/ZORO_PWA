@@ -2,7 +2,7 @@
   "name": "Zoro Sequence",
   "short_name": "Zoro",
   "description": "Memorizza la sequenza di carte raffiguranti Zoro",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#1f84e5",
   "theme_color": "#1f84e5",
