@@ -57,12 +57,12 @@ function create() {
     createStartScreen.call(this);
     
     // Handle window resize
-    //window.addEventListener('resize', () => {
-    //    this.scale.resize(window.innerWidth, window.innerHeight);
-    //    if (gameState === 'start') {
-   //         createStartScreen.call(this);
-    //    }
-    //});
+    window.addEventListener('resize', () => {
+        this.scale.resize(window.innerWidth, window.innerHeight);
+        if (gameState === 'start') {
+            createStartScreen.call(this);
+        }
+    });
 }
 
 function createStartScreen() {
@@ -73,7 +73,7 @@ function createStartScreen() {
     const height = this.scale.height;
 
     // Add background image with fixed size instead of scaling to screen
-    const background = this.add.image(width/2, 0, 'background_Start');//.setDisplaySize((config.height*2752)/2100, 1920);
+    const background = this.add.image(this.cameras.main.width/2, this.cameras.main.height / 2, 'background_Start').setDisplaySize((this.cameras.main.height*2752)/2100, this.cameras.main.height);
     // Keep original size instead of scaling
     
     const centerX = this.cameras.main.width / 2;
@@ -605,7 +605,8 @@ function gameOver(success) {
     //background.setDisplaySize(width, height);   
 
     //const background = this.add.image(width/2, height/2, bgKey).setDisplaySize((config.height*2752)/2100, config.height);
-    const background = this.add.image(width/2, 0, bgKey);
+    //const background = this.add.image(width/2, 0, bgKey);
+    const background = this.add.image(this.cameras.main.width/2, this.cameras.main.height / 2, bgKey).setDisplaySize((this.cameras.main.height*2752)/2100, this.cameras.main.height);
     
     //background = this.add.image(425, 425, bgKey);
     //background.setDisplaySize(850, 850);
