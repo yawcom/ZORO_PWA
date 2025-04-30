@@ -43,6 +43,10 @@ function preload() {
     this.load.image('background_GameOver', 'bgGameOver.jpg');
     this.load.image('background_Win', 'bgWin.jpg');
     this.load.image('copy', 'Copy.png');
+
+    this.input.once('pointerdown', function () {
+        this.scale.startFullscreen();
+    }, this);
     
     // Load all 32 card images
     for (let i = 1; i <= 32; i++) {
@@ -52,7 +56,8 @@ function preload() {
 
 function create() {
     //this.scale.resize(window.innerWidth, window.innerHeight);
-    
+
+
     // Create start screen
     createStartScreen.call(this);
     
@@ -142,6 +147,10 @@ this.time.addEvent({
         i++;
     }
 });
+
+this.input.once('pointerdown', function () {
+    this.scale.startFullscreen();
+}, this);
 
 const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
 .setOrigin(0.5)
