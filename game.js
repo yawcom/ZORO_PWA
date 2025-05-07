@@ -70,6 +70,16 @@ function create() {
     });
 }
 
+// Funzione per registrare la partita
+function registraPartita() {
+    const url = 'https://script.google.com/macros/s/AKfycbya7GidybLreaB9P7-dXhA6vg-5QpIUekeJz2E0xSkqkuoJPn6aNNH_WGBP1PgnkwryLw/exec';
+    
+    fetch(`${url}?evento=ZORO`)
+        .then(response => response.text())
+        .then(data => console.log('ZORO:', data))
+        .catch(error => console.error('Errore durante la registrazione della partita:', error));
+}
+
 function createStartScreen() {
     // Clear any existing elements
     this.children.removeAll(true);
@@ -181,6 +191,8 @@ const copyImage = this.add.image(config.width -180, config.height - 15, 'copy')
         //startButton.visible = false;
         startButton.destroy();
 
+		registraPartita();
+		
         gameState = 'memorize';
         startLevel.call(this);
     });
